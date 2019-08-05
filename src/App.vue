@@ -14,12 +14,14 @@
 <script>
 import ArtistCreate from './components/artists/Create.vue'
 import ArtistList from './components/artists/List.vue'
+import ArtistEdit from './components/artists/Edit.vue'
 
 export default {
   name: 'app',
   components: {
     ArtistCreate,
-    ArtistList
+    ArtistList,
+    ArtistEdit
   },
   data () {
     return {

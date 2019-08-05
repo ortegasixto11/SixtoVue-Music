@@ -16,7 +16,7 @@
                 <tbody>
                     <tr v-for="item in artists" :key="item['.key']">
                         <td> {{ item.name }} </td>
-                        <td> <button>Editar</button> </td>
+                        <td> <button @click="edit(item.id)">Editar</button> </td>
                         <td> <button @click="remove(item.id)">Eliminar</button> </td>
                     </tr>
                 </tbody>
@@ -54,6 +54,9 @@ export default {
                 Service.delete(REF, id)
                 Service.getAll(REF).then((data) => this.loadData(data))
             }
+        },
+        edit(id){
+            this.$router.push({name: 'ArtistEdit', params: { id: id }})
         }
     }
 }
