@@ -17,20 +17,25 @@ const REF = 'artists'
 
 export default {
     mounted(){
-        document.getElementById('artista_nombre').focus()
+        this.focusInputNombre()
     },
     data(){
         return {
             artist: {
                 name: ''
-            }
+            },
+            albums: [],
+            songs: []
         }
     },
     methods: {
         save(){
             Service.create(REF, this.artist).catch(err => console.log(err))
             this.artist.name = ''
-            document.getElementById('artista_nombre').focus()
+            this.focusInputNombre()
+        },
+        focusInputNombre(){
+            document.getElementById('artist_nombre').focus()
         }
     }
 }

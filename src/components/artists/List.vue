@@ -9,6 +9,8 @@
                 <thead>
                     <tr>
                         <th> Nombre </th>
+                        <th> Albums </th>
+                        <th> Canciones </th>
                         <th> Editar </th>
                         <th> Eliminar </th>
                     </tr>
@@ -16,6 +18,8 @@
                 <tbody>
                     <tr v-for="item in artists" :key="item['.key']">
                         <td> {{ item.name }} </td>
+                        <td> {{ item.albums }} </td>
+                        <td> {{ item.songs }} </td>
                         <td> <button @click="edit(item.id)">Editar</button> </td>
                         <td> <button @click="remove(item.id)">Eliminar</button> </td>
                     </tr>
@@ -26,7 +30,6 @@
 </template>
 
 <script>
-
 import Service from '../../services/firebaseService'
 const REF = 'artists'
 
@@ -45,7 +48,9 @@ export default {
             for(let key in data){
                 this.artists.push({
                     id: key,
-                    name: data[key].name
+                    name: data[key].name,
+                    albums: 0,
+                    songs: 0
                 })
             }
         },

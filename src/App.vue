@@ -3,6 +3,8 @@
     <h1>{{ msg }}</h1>
     <ul>
       <li> <router-link :to="{name: 'ArtistList'}"> Artistas </router-link> </li>
+      <li> <router-link :to="{name: 'AlbumList'}"> Albums </router-link> </li>
+      <li> <router-link :to="{name: 'SongList'}"> Canciones </router-link> </li>
     </ul>
 
     <br />
@@ -15,13 +17,25 @@
 import ArtistCreate from './components/artists/Create.vue'
 import ArtistList from './components/artists/List.vue'
 import ArtistEdit from './components/artists/Edit.vue'
+import AlbumCreate from './components/albums/Create.vue'
+import AlbumList from './components/albums/List.vue'
+import AlbumEdit from './components/albums/Edit.vue'
+import SongCreate from './components/songs/Create.vue'
+import SongList from './components/songs/List.vue'
+import SongEdit from './components/songs/Edit.vue'
 
 export default {
   name: 'app',
   components: {
     ArtistCreate,
     ArtistList,
-    ArtistEdit
+    ArtistEdit,
+    AlbumCreate,
+    AlbumList,
+    AlbumEdit,
+    SongCreate,
+    SongList,
+    SongEdit
   },
   data () {
     return {
