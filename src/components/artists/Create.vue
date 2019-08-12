@@ -35,7 +35,7 @@ export default {
             this.focusInputNombre()
         },
         focusInputNombre(){
-            document.getElementById('artist_nombre').focus()
+            document.getElementById('artista_nombre').focus()
         }
     }
 }

@@ -18,7 +18,10 @@
                 <tbody>
                     <tr v-for="item in artists" :key="item['.key']">
                         <td> {{ item.name }} </td>
-                        <td> {{ item.albums }} </td>
+                        <td> 
+                            {{ item.albums }} &nbsp; &nbsp;
+                            <button @click="createAlbum(item.id)"> Crear </button> 
+                        </td>
                         <td> {{ item.songs }} </td>
                         <td> <button @click="edit(item.id)">Editar</button> </td>
                         <td> <button @click="remove(item.id)">Eliminar</button> </td>
@@ -49,8 +52,8 @@ export default {
                 this.artists.push({
                     id: key,
                     name: data[key].name,
-                    albums: 0,
-                    songs: 0
+                    albums: data[key].hasOwnProperty('albums') ? data[key].albums.length : 0,
+                    songs: data[key].hasOwnProperty('songs') ? data[key].songs.length : 0
                 })
             }
         },
@@ -62,6 +65,9 @@ export default {
         },
         edit(id){
             this.$router.push({name: 'ArtistEdit', params: { id: id }})
+        },
+        createAlbum(artist_id){
+            this.$router.push({name: 'AlbumCreateFromArtist', params: { artist_id: artist_id }})
         }
     }
 }

@@ -13,6 +13,7 @@ const routes = [
     { path: '/artist/list', component: ArtistList, name: 'ArtistList' },
     { path: '/artist/edit/:id', component: ArtistEdit, name: 'ArtistEdit' },
     { path: '/album/create', component: AlbumCreate, name: 'AlbumCreate' },
+    { path: '/album/create/artist/:artist_id', component: AlbumCreate, name: 'AlbumCreateFromArtist' },
     { path: '/album/list', component: AlbumList, name: 'AlbumList' },
     { path: '/album/edit/:id', component: AlbumEdit, name: 'AlbumEdit' },
     { path: '/song/create', component: SongCreate, name: 'SongCreate' },
