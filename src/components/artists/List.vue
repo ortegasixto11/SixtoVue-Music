@@ -61,6 +61,8 @@ export default {
             if(confirm('Eliminar Artista?')){
                 Service.delete(REF, id)
                 Service.getAll(REF).then((data) => this.loadData(data))
+                Service.deleteByProp('albums', 'artist_id', id)
+
             }
         },
         edit(id){

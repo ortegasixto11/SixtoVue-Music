@@ -25,6 +25,7 @@ export default {
         return {
             album: {
                 name: '',
+                artist_id: '',
                 artist: {
                     id: '',
                     name: '',
@@ -38,13 +39,22 @@ export default {
     methods: {
         save(){
             // Creo el Album
-            Service.create(REF, this.album).catch(err => console.log(err))
-            // Actualizo el Artista
-            this.album.artist.albums.push({ name: this.album.name })
-            Service.update('artists', this.album.artist.id, { albums: this.album.artist.albums }).catch(err => console.log(err))
-            // Limpio el input y le doy focus
-            this.album.name = ''
-            this.focusInputNombre()
+            Service.create(REF, this.album)
+                .then(res => {
+                    this.album.artist.albums.push({ 
+                        id: res.key,
+                        name: this.album.name 
+                    })
+                    // Actualizo el Artista
+                    Service.update('artists', this.album.artist.id, { albums: this.album.artist.albums })
+                        .then(() => {
+                            // Limpio el input y le doy focus
+                            this.album.name = ''
+                            this.focusInputNombre()
+                        })
+                        .catch(err => console.log(err))
+                })
+                .catch(err => console.log(err))
         },
         focusInputNombre(){
             document.getElementById('album_nombre').focus()
@@ -54,6 +64,7 @@ export default {
             this.album.artist.albums = artist.hasOwnProperty('albums') ? artist.albums : []
             this.album.artist.songs = artist.hasOwnProperty('songs') ? artist.songs : []
             this.album.artist.id = id
+            this.album.artist_id = id
         }
     }
     

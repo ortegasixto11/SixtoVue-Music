@@ -19,5 +19,13 @@ export default {
     },
     delete(ref, id){
         return dbFirebase.ref(ref).child(id).remove()
+    },
+    deleteByProp(ref, prop, value){
+        dbFirebase.ref(ref).orderByChild(prop).equalTo(value).on('value', (data) => {
+            const items = data.val()
+            for(let item in items){
+                this.delete(ref, item)
+            }
+        })
     }
 }
